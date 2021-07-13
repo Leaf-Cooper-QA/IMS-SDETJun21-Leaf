@@ -46,7 +46,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", price=" + price + "]";
+		return "id:" + id + " name:" + name + " price:" + price;
 	}
 
 	@Override
@@ -63,9 +63,9 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price);
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name) && Objects.equals(price, other.price);
 	}
+
 
 
 	

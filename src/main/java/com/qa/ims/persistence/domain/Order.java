@@ -8,9 +8,6 @@ public class Order {
 	private Long customerId;
 	private Double total;
 	
-	public Order() {
-		
-	}
 	
 	public Order(Long id, Long customerId, Double total) {
 		this.id = id;
@@ -67,7 +64,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", customerId=" + customerId + ", total=" + total + "]";
+		return "id:" + id + " customerId:" + customerId + " total:" + total;
 	}
 	
 	
