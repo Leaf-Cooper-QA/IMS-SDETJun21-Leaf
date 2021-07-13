@@ -99,7 +99,7 @@ public class OrderController implements CrudController<Order> {
 		List<OrderItem> orderItems = orderItemDAO.readAll();
 		for (OrderItem orderItem : orderItems) {
 			if (orderItem.getOrderId()== id) {
-				int deletedOrderItem = orderItemDAO.delete(orderItem.getId());
+				orderItemDAO.delete(orderItem.getId());
 			}
 		}
 		return orderDAO.delete(id);
@@ -110,6 +110,10 @@ public class OrderController implements CrudController<Order> {
 	
 	public void addItem(Order order) {
 		List<Item> items = itemDAO.readAll();
+		LOGGER.info("Here are the items you can currently add:");
+		for (Item item : items) {
+			LOGGER.info(item.getName());
+		}
 		LOGGER.info("Please enter an item to add. Enter 'Done' when you're finished");
 		String newItem = utils.getString();
 		if (newItem.equalsIgnoreCase("DONE")) {
@@ -124,9 +128,8 @@ public class OrderController implements CrudController<Order> {
 			
 			if (itemId != -1) {
 				Item item = itemDAO.read(itemId);
-				//can probably remove variable assignment here, do it if everything works
-				Order newOrder = orderDAO.update(new Order(order.getId(),order.getCustomerId(),order.getTotal()+item.getPrice()));
-				OrderItem orderItem = orderItemDAO.create(new OrderItem(order.getId(),itemId));
+				orderDAO.update(new Order(order.getId(),order.getCustomerId(),order.getTotal()+item.getPrice()));
+				orderItemDAO.create(new OrderItem(order.getId(),itemId));
 				LOGGER.info("Item added");
 				addItem(order);
 				return;
@@ -154,7 +157,7 @@ public class OrderController implements CrudController<Order> {
 			
 			if (itemId != -1) {
 				Item item = itemDAO.read(itemId);
-				Order newOrder = orderDAO.update(new Order(order.getId(),order.getCustomerId(),order.getTotal()-item.getPrice()));
+				orderDAO.update(new Order(order.getId(),order.getCustomerId(),order.getTotal()-item.getPrice()));
 				List<OrderItem> orderItems = orderItemDAO.readAll();
 				Long orderItemId = (long) -1;
 				for (OrderItem oi :orderItems) {
@@ -164,7 +167,7 @@ public class OrderController implements CrudController<Order> {
 				}
 				
 				if (orderItemId != -1) {
-					int deletedItem = orderItemDAO.delete(orderItemId);
+					orderItemDAO.delete(orderItemId);
 					LOGGER.info("Item removed from order");
 					removeItem(order);
 					return;
