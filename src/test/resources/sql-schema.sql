@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `item_name` varchar(45) NOT NULL UNIQUE,
   `price` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `orders` (
