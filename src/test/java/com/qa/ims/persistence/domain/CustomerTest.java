@@ -74,7 +74,7 @@ public class CustomerTest {
 	@Test
 	public void testToString() {
 		Customer leaf = new Customer(1l,"Leaf","Cooper");
-		String expected = "id:" + leaf.getId() + " first name:" + leaf.getFirstName() + " surname:" + leaf.getSurname();
+		String expected = "id:" + leaf.getId() + " firstName:" + leaf.getFirstName() + " surname:" + leaf.getSurname();
 		assertEquals(expected,leaf.toString());
 	}
 
