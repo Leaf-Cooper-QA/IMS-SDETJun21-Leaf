@@ -1,7 +1,6 @@
-Coverage: 34%
 # Project Title
 
-One Paragraph of project description goes here
+This is an Inventory Management System (IMS) implementing primarily Java and SQL. The system allows for CRUD functionality for customers, orders and items, where an order is a collection of items made by one customer
 
 ## Getting Started
 
@@ -9,56 +8,54 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+
+This system requires the use of Java and SQL. Additionally, the Eclipse IDE is recommended. This system uses Java 1.8, later versions should also work but earlier versions may not
 
 ```
-Give examples
+To best install these pieces of software, it is recommended to access their download pages and follow the instructions there
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+This installation example uses the Eclipse IDE, other IDEs may differ
 
-Say what the step will be
+First, copy the link for this repository on Github
 
-```
-Give the example
-```
+Second, in Eclipse, right click on package explorer and click 'Import'
 
-And repeat
+Then select 'Projects from Git (with Smart Install)'
 
-```
-until finished
-```
+Select 'Clone URI'
 
-End with an example of getting some data out of the system or using it for a little demo
+This should automatically paste your clipboard containing the Github repository address
 
-## Running the tests
+Click 'Next' until the window dissapears
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+With the folder installed, you will need to create the SQL database. The Schema required for this is in src/main/resources/sql-schema.sql
+
+Run these SQL instructions via MySQL command line
+
+You will also need to allow your system to see this database. Go to src/main/resources/db.properties and change the values accordingly
+
+You should now be set up, go to the Runner class and run it, you should be presented with instructions on how to view and edit your tables
 
 ### Unit Tests 
 
-Explain what these tests test, why and how to run them
+This system includes unit tests that have 80% coverage of the main application. If you wish to run these tests, right click src/test/java and select coverage as JUnit Test
 
-```
-Give an example
-```
+The unit tests come in 4 main groups, tests for the domains, the controllers, the DAOs and the fail-cases of the DAOs
 
-### Integration Tests 
-Explain what these tests test, why and how to run them
+A simple example of a unit test would be as follows:
 
-```
-Give an example
-```
+	@Test
+	public void testGetId() {
+		Item apple = new Item(1l,"apple",1.00);
+		Long expected = 1l;
+		assertEquals(expected,apple.getId());
+	}
 
-### And coding style tests
+which tests that the item.getId() method returns as expected for a generic example. Some unit tests are more complex and make use of the Mockito dependency to simulate submethods
 
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
@@ -70,11 +67,12 @@ Add additional notes about how to deploy this on a live system
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning.
+We use Github(http://github.org/) for versioning.
 
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Leaf Cooper** - *Project work* 
 
 ## License
 
@@ -84,6 +82,6 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thank you to supervisors Pawel and Alan for helping with complex issues
+* Thank you also to Marco for help with troubleshooting
+* Finally thank you to Google for holding a lot of answers to my questions
